@@ -242,4 +242,4 @@ function cash (price, bill) {
   console.log(changeVariants)
 }
 
-cash(36, 200)
+cash(136, 500)
