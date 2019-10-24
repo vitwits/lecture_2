@@ -1,3 +1,20 @@
+'use strict'
+
+// MIN NUMBER
+function min (arr) {
+  const newArray = []
+  arr.forEach(function (element) {
+    if (isNaN(element) !== true) {
+      newArray.push(element)
+    }
+  })
+  newArray.sort((a, b) => a - b)
+  const minNumber = newArray[0]
+  console.log(minNumber)
+}
+
+min([4, -100, -3, null, NaN, undefined, 8, 123, 9, -22.6])
+
 // MAX NUMBER
 function max (arr) {
   arr.sort((a, b) => b - a)
@@ -5,35 +22,20 @@ function max (arr) {
   console.log(maxNumber)
 }
 
-max([1, NaN, 345.3, null, undefined, 'abc', 3, 5, -3])
-
-// MIN NUMBER
-function min (arr) {
-  const newArray = []
-  arr.forEach(function (element) {
-    if (typeof (element) === 'number' && isNaN(element) !== true) {
-      newArray.push(element)
-    }
-  })
-  newArray.sort((a, b) => b - a)
-  const minNumber = newArray[newArray.length - 1]
-  console.log(minNumber)
-}
-
-min([4, 12, 3.2, 5, null, NaN, undefined, 8, 123, 9, -22.6, 56])
+max([4, -100, -3, null, NaN, undefined, 8, 123, 9, -22.6])
 
 // SUM OF NUMBERS
 function sum (arr) {
   let sumOfNumbers = arr[0]
   for (var i = 1; i < arr.length; i++) {
-    if (typeof (arr[i]) === 'number' && isNaN(arr[i]) !== true) {
+    if (isNaN(arr[i]) !== true) {
       sumOfNumbers += arr[i]
     }
   }
   console.log(sumOfNumbers)
 }
 
-sum([1, 100, 49, 300, NaN, 3.2, 'sdf', null, undefined, 5, -3])
+sum([4, -100, -3, null, NaN, undefined, 8, 123, 9, -22.6])
 
 // MIN MAX SUM
 function minMaxSum (arr) {
@@ -49,10 +51,10 @@ function minMaxSum (arr) {
   newArray.sort((a, b) => b - a)
   const minNumber = newArray[newArray.length - 1]
   const maxNumber = newArray[0]
-  mmsObject.max = maxNumber
   mmsObject.min = minNumber
+  mmsObject.max = maxNumber
   mmsObject.sum = added
   console.log(mmsObject)
 }
 
-minMaxSum([4, 12, 3, 5, null, NaN, undefined, 8, 123, 9, -22.5, 56])
+minMaxSum([4, -100, -3, null, NaN, undefined, 8, 123, 9, -22.6])

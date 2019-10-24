@@ -1,12 +1,10 @@
-'use strict'
+function deep(arr) {
+  let start, end, arrayStart, arrayEnd, water, a, b, i, amount = 0
 
-function deep (arr) {
-  let start; let end; let arrayStart; let arrayEnd; let water; let amount = 0
-
-  for (let b = 0; b < arr.length; b++) {
+  for (b = 0; b < arr.length; b++) {
     start = arr[0]
 
-    for (var i = 0; i < arr.length; i++) {
+    for (i = 0; i < arr.length; i++) {
       if (arr[i] >= start) {
         start = arr[i]
         arrayStart = i
@@ -22,9 +20,7 @@ function deep (arr) {
         end = arr[i]
         arrayEnd = i
         break
-      } else {
-        end = arr[i]
-      }
+      } 
     }
 
     if (start > end) {
@@ -37,7 +33,7 @@ function deep (arr) {
         arr.splice(0, arrayEnd)
       }
 
-      for (let a = 2; a < water.length; a++) {
+      for (a = 2; a < water.length; a++) {
         amount += water[1] - water[a]
       }
     }
