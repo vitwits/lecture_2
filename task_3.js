@@ -1,56 +1,27 @@
 'use strict'
 
-function cash (price, bill) {
+function cash (price, banknote, banknoteStack) {
   const changeVariants = []
+  const stack = []
+
   let sumRight = 0
   let lastArray
   let findPoint
   let leftPart
   let rightPart
-  let change = bill - price
-  const stack = []
-  let a
-  const billStack = [200, 100, 50, 20, 10, 5, 2, 1]
+  let change = banknote - price
+  let timesToSubtract
+  let aCounter
+  let bCounter
+  let cCounter
 
   for (var i = 0; i < 1; i++) {
-    for (a = Math.floor(change / billStack[0]); a > 0; a--) {
-      change -= billStack[0]
-      stack.push(billStack[0])
-    }
-
-    for (a = Math.floor(change / billStack[1]); a > 0; a--) {
-      change -= billStack[1]
-      stack.push(billStack[1])
-    }
-
-    for (a = Math.floor(change / billStack[2]); a > 0; a--) {
-      change -= billStack[2]
-      stack.push(billStack[2])
-    }
-
-    for (a = Math.floor(change / billStack[3]); a > 0; a--) {
-      change -= billStack[3]
-      stack.push(billStack[3])
-    }
-
-    for (a = Math.floor(change / billStack[4]); a > 0; a--) {
-      change -= billStack[4]
-      stack.push(billStack[4])
-    }
-
-    for (a = Math.floor(change / billStack[5]); a > 0; a--) {
-      change -= billStack[5]
-      stack.push(billStack[5])
-    }
-
-    for (a = Math.floor(change / billStack[6]); a > 0; a--) {
-      change -= billStack[6]
-      stack.push(billStack[6])
-    }
-
-    for (a = Math.floor(change / billStack[7]); a > 0; a--) {
-      change -= billStack[7]
-      stack.push(billStack[7])
+    while (i < banknoteStack.length) {
+      for (timesToSubtract = Math.floor(change / banknoteStack[i]); timesToSubtract > 0; timesToSubtract--) {
+        change -= banknoteStack[i]
+        stack.push(banknoteStack[i])
+      }
+      i++
     }
   }
 
@@ -59,7 +30,7 @@ function cash (price, bill) {
   for (i = 0; i >= 0; i++) {
     lastArray = changeVariants[i]
 
-    if (changeVariants[i].length === bill - price) {
+    if (changeVariants[i].length === banknote - price) {
       break
     }
 
@@ -78,168 +49,22 @@ function cash (price, bill) {
       sumRight = lastArray[lastArray.length - 1]
     }
 
-    if (lastArray[findPoint - 1] === 2) {
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
-    }
+    aCounter = banknoteStack.length - 2
 
-    if (lastArray[findPoint - 1] === 5) {
-      for (a = Math.floor(sumRight / billStack[6]); a > 0; a--) {
-        sumRight -= billStack[6]
-        leftPart.push(billStack[6])
+    for (cCounter = banknoteStack.length - 1; cCounter > 0; cCounter--) {
+      if (lastArray[findPoint - 1] === banknoteStack[aCounter]) {
+        for (bCounter = aCounter + 1; bCounter < banknoteStack.length; bCounter++) {
+          for (timesToSubtract = Math.floor(sumRight / banknoteStack[bCounter]); timesToSubtract > 0; timesToSubtract--) {
+            sumRight -= banknoteStack[bCounter]
+            leftPart.push(banknoteStack[bCounter])
+          }
+        }
+        changeVariants.push(leftPart)
       }
-
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
-    }
-
-    if (lastArray[findPoint - 1] === 10) {
-      for (a = Math.floor(sumRight / billStack[5]); a > 0; a--) {
-        sumRight -= billStack[5]
-        leftPart.push(billStack[5])
-      }
-
-      for (a = Math.floor(sumRight / billStack[6]); a > 0; a--) {
-        sumRight -= billStack[6]
-        leftPart.push(billStack[6])
-      }
-
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
-    }
-
-    if (lastArray[findPoint - 1] === 20) {
-      for (a = Math.floor(sumRight / billStack[4]); a > 0; a--) {
-        sumRight -= billStack[4]
-        leftPart.push(billStack[4])
-      }
-
-      for (a = Math.floor(sumRight / billStack[5]); a > 0; a--) {
-        sumRight -= billStack[5]
-        leftPart.push(billStack[5])
-      }
-
-      for (a = Math.floor(sumRight / billStack[6]); a > 0; a--) {
-        sumRight -= billStack[6]
-        leftPart.push(billStack[6])
-      }
-
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
-    }
-
-    if (lastArray[findPoint - 1] === 50) {
-      for (a = Math.floor(sumRight / billStack[3]); a > 0; a--) {
-        sumRight -= billStack[3]
-        leftPart.push(billStack[3])
-      }
-
-      for (a = Math.floor(sumRight / billStack[4]); a > 0; a--) {
-        sumRight -= billStack[4]
-        leftPart.push(billStack[4])
-      }
-
-      for (a = Math.floor(sumRight / billStack[5]); a > 0; a--) {
-        sumRight -= billStack[5]
-        leftPart.push(billStack[5])
-      }
-
-      for (a = Math.floor(sumRight / billStack[6]); a > 0; a--) {
-        sumRight -= billStack[6]
-        leftPart.push(billStack[6])
-      }
-
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
-    }
-
-    if (lastArray[findPoint - 1] === 100) {
-      for (a = Math.floor(sumRight / billStack[2]); a > 0; a--) {
-        sumRight -= billStack[2]
-        leftPart.push(billStack[2])
-      }
-
-      for (a = Math.floor(sumRight / billStack[3]); a > 0; a--) {
-        sumRight -= billStack[3]
-        leftPart.push(billStack[3])
-      }
-
-      for (a = Math.floor(sumRight / billStack[4]); a > 0; a--) {
-        sumRight -= billStack[4]
-        leftPart.push(billStack[4])
-      }
-
-      for (a = Math.floor(sumRight / billStack[5]); a > 0; a--) {
-        sumRight -= billStack[5]
-        leftPart.push(billStack[5])
-      }
-
-      for (a = Math.floor(sumRight / billStack[6]); a > 0; a--) {
-        sumRight -= billStack[6]
-        leftPart.push(billStack[6])
-      }
-
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
-    }
-
-    if (lastArray[findPoint - 1] === 200) {
-      for (a = Math.floor(sumRight / billStack[1]); a > 0; a--) {
-        sumRight -= billStack[1]
-        leftPart.push(billStack[1])
-      }
-
-      for (a = Math.floor(sumRight / billStack[2]); a > 0; a--) {
-        sumRight -= billStack[2]
-        leftPart.push(billStack[2])
-      }
-
-      for (a = Math.floor(sumRight / billStack[3]); a > 0; a--) {
-        sumRight -= billStack[3]
-        leftPart.push(billStack[3])
-      }
-
-      for (a = Math.floor(sumRight / billStack[4]); a > 0; a--) {
-        sumRight -= billStack[4]
-        leftPart.push(billStack[4])
-      }
-
-      for (a = Math.floor(sumRight / billStack[5]); a > 0; a--) {
-        sumRight -= billStack[5]
-        leftPart.push(billStack[5])
-      }
-
-      for (a = Math.floor(sumRight / billStack[6]); a > 0; a--) {
-        sumRight -= billStack[6]
-        leftPart.push(billStack[6])
-      }
-
-      for (a = Math.floor(sumRight / billStack[7]); a > 0; a--) {
-        sumRight -= billStack[7]
-        leftPart.push(billStack[7])
-      }
-      changeVariants.push(leftPart)
+      aCounter--
     }
   }
   console.log(changeVariants)
 }
 
-cash(136, 500)
+cash(36, 200, [200, 100, 50, 20, 10, 5, 2, 1])

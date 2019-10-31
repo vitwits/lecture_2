@@ -1,40 +1,49 @@
-function deep(arr) {
-  let start, end, arrayStart, arrayEnd, water, a, b, i, amount = 0
+function deep (arr) {
+  let start
+  let end
+  let arrayStart
+  let arrayEnd
+  let water
+  let aCounter
+  let bCounter
+  let iCounter
+  let amount = 0
 
-  for (b = 0; b < arr.length; b++) {
+  for (bCounter = 0; bCounter < arr.length; bCounter++) {
     start = arr[0]
 
-    for (i = 0; i < arr.length; i++) {
-      if (arr[i] >= start) {
-        start = arr[i]
-        arrayStart = i
+    for (iCounter = 0; iCounter < arr.length; iCounter++) {
+      if (arr[iCounter] >= start) {
+        start = arr[iCounter]
+        arrayStart = iCounter
       } else {
-        end = arr[i]
-        i++
+        end = arr[iCounter]
+        iCounter++
         break
       }
     }
 
-    for (i; i < arr.length; i++) {
-      if (arr[i] >= start) {
-        end = arr[i]
-        arrayEnd = i
+    while (iCounter < arr.length) {
+      if (arr[iCounter] >= start) {
+        end = arr[iCounter]
+        arrayEnd = iCounter
         break
-      } 
+      }
+      iCounter++
     }
 
     if (start > end) {
       arr.reverse()
     } else {
       water = arr.slice(arrayStart, arrayEnd + 1).sort((a, b) => b - a)
-      if (++i === arr.length) {
+      if (++iCounter === arr.length) {
         arr.splice(0, arr.length - 1)
       } else {
         arr.splice(0, arrayEnd)
       }
 
-      for (a = 2; a < water.length; a++) {
-        amount += water[1] - water[a]
+      for (aCounter = 2; aCounter < water.length; aCounter++) {
+        amount += water[1] - water[aCounter]
       }
     }
   }

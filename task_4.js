@@ -1,8 +1,8 @@
-var context
-var dx = 5
-var dy = 3
-var y = 150
-var x = 45
+let context
+let dx = 5
+let dy = 3
+let y = 150
+let x = 45
 
 function draw () {
   context = field.getContext('2d')
